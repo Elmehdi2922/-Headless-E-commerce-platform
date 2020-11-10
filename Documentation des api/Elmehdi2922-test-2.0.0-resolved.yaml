@@ -1,0 +1,229 @@
+---
+swagger: 2.0
+info:
+  version: 2.0.0
+  title: API Catalog microservice
+paths:
+  /catalogs/getAllCat:
+    get:
+      operationId: controllers\CatalogController::getAllCat
+      parameters: []
+      responses:
+        "200":
+          description: all catalogs
+        "404":
+          description: Error
+  /catalogs/getById/{id}:
+    get:
+      operationId: controllers\CatalogController::getById
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "200":
+          description: get Catalog by id
+        "404":
+          description: Error
+  /catalogs/get/:
+    get:
+      operationId: controllers\CatalogController::get
+      parameters: []
+      responses:
+        "200":
+          description: get Catalogs
+        "404":
+          description: End-point doesn't exists
+  /catalogs/getOne/{id}:
+    get:
+      operationId: controllers\CatalogController::getOne
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "200":
+          description: get one Catalogs by id
+        "404":
+          description: End-point doesn't exists
+  /catalogs/getActiveCatalog:
+    get:
+      operationId: controllers\CatalogController::getActiveCatalog
+      parameters: []
+      responses:
+        "200":
+          description: get active Catalogs
+        "404":
+          description: Error or empty result
+  /catalogs/getDesactiveCatalog:
+    get:
+      operationId: controllers\CatalogController::getDesactiveCatalog
+      parameters: []
+      responses:
+        "200":
+          description: get Desactive Catalogs
+        "404":
+          description: Error or empty result
+  /catalogs/getCatalogSize/{id}:
+    get:
+      operationId: controllers\CatalogController::getCatalogSize
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "200":
+          description: Success
+        "404":
+          description: 404
+  /catalogs/addCatalog:
+    post:
+      operationId: controllers\CatalogController::addCatalog
+      parameters:
+      - name: catalog
+        in: query
+        required: true
+      responses:
+        "200": {}
+        "404": {}
+  /catalogs/add:
+    post:
+      operationId: controllers\CatalogController::save
+      parameters:
+      - name: catalog
+        in: query
+        required: true
+      responses:
+        "200":
+          description: 200Ok
+        "404":
+          description: Ressource doesn't exists
+  /catalogs/ajouterProd/{idproduct}/ToCatalog/{idcatalog}:
+    post:
+      operationId: controllers\CatalogController::ajouterProdToCatalog
+      parameters:
+      - name: idcatalog
+        in: path
+        required: true
+      - name: idproduct
+        in: path
+        required: true
+      responses:
+        "200":
+          description: 200OK
+        "404":
+          description: Ressource doesn't exists
+  /catalogs/deleteCatalog/{id}:
+    delete:
+      operationId: controllers\CatalogController::deleteCatalog
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "201":
+          description: 200 OK Catalog deleted
+        "202":
+          description: 200 OK Error deleting
+        "404":
+          description: Catalog {id} does not exist
+  /catalogs/delete/{id}:
+    delete:
+      operationId: controllers\CatalogController::delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "200":
+          description: 200OK
+        "404":
+          description: Ressource doesn't exists
+  /catalogs/ViderCatalog/{id}:
+    delete:
+      operationId: controllers\CatalogController::ViderCatalog
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "201":
+          description: 200 OK Catalog is empty now
+        "202":
+          description: 200 OK Error emptying
+        "203":
+          description: 200 OK Catalog {id} is already empty
+        "404":
+          description: Catalog {id} does not exist
+  /catalogs/update/:
+    put:
+      operationId: controllers\RestCartController::update
+      parameters:
+      - name: catalog
+        in: query
+        required: true
+      responses:
+        "200":
+          description: 200OK
+        "404":
+          description: Ressource doesn't exists
+  /catalogs/updateCatalog:
+    put:
+      operationId: controllers\RestCartController::updateCatalog
+      parameters:
+      - name: catalog
+        in: query
+        required: true
+      responses:
+        "201":
+          description: 200 OK Catalog updated
+        "202":
+          description: 200 OK Error updating
+        "404":
+          description: Catalog does not exist
+  /catalogs/ActiveAllCatalog:
+    put:
+      operationId: controllers\RestCartController::ActiveAllCatalog
+      parameters: []
+      responses:
+        "200":
+          description: 200 OK All catalogs are activated
+        "404":
+          description: All catalogs are already activated
+  /catalogs/DesactiveAllCatalog:
+    put:
+      operationId: controllers\RestCartController::DesactiveAllCatalog
+      parameters: []
+      responses:
+        "200":
+          description: 200 OK All catalogs are desactivated
+        "404":
+          description: All catalogs are already desactivated
+  /catalogs/ActiveCatalog/{id}:
+    put:
+      operationId: controllers\RestCartController::ActiveCatalog
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "201":
+          description: 200 OK Catalog $id activated
+        "202":
+          description: 200 OK Error activing
+        "404":
+          description: Catalog does not exist
+  /catalogs/DesactiveCatalog/{id}:
+    put:
+      operationId: controllers\RestCartController::DesactiveCatalog
+      parameters:
+      - name: id
+        in: path
+        required: true
+      responses:
+        "201":
+          description: 200 OK Catalog $id desactivated
+        "202":
+          description: 200 OK Error desactiving
+        "404":
+          description: Catalog does not exist
